@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CRUD</title>
     <link rel="stylesheet" href="style.css" />
-    <script text="text/javascript" src="script.js"></script>
+    <script defer text="text/javascript" src="script.js"></script>
   </head>
   <body>
     <form class="form">
@@ -21,50 +21,76 @@
             type="text"
             class="input"
             style="width: 110px"
+            id="nome"
+            onchange="addNome()"
           />
           <span>Nome</span>
         </label>
         <label>
-          <input required placeholder="" type="text" class="input" />
+          <input
+            required
+            placeholder=""
+            type="text"
+            class="input"
+            id="sobrenome"
+            onchange="addSobrenome()"
+          />
           <span>Sobrenome</span>
         </label>
       </div>
       <label>
-        <input required placeholder="" type="text" class="input" />
+        <input
+          required
+          placeholder=""
+          type="text"
+          class="input"
+          id="fantasia"
+          onchange="addFantasia()"
+        />
         <span>Fantasia</span>
       </label>
       <label>
-        <input required placeholder="" type="text" class="input" />
+        <input
+          required
+          placeholder=""
+          type="text"
+          class="input"
+          id="local"
+          onchange="addLocal()"
+        />
         <span>Local</span>
       </label>
 
       <button class="submit">Cadastrar</button>
     </form>
-    <div  class="tabela">
-    <table>
-      <p class="tittable">Cadastro de Personagem</p>
-      <br>
-      <tr>
-      <th>Nome</th>
-      <th>Sobrenome</th>
-      <th>Fantasia</th>
-      <th>Local</th>
-      <th>Editar</th>
-      <th>Limpar</th>
-      <tr>
-        <td>Peterxxxxxx</td>
-        <td>Parkerxxxxxx</td>
-        <td>Homem-Aranhaxxxxxx</td>
-        <td>NY Cityxxxxxx</td>
-        <td><img src="Img/editar.png" alt="Editar" class="Editar"></td>
-        <td><img src="Img/lixeira-de-reciclagem.png" alt="Lixeira" class="Lixeira"></td>
-      </tr>
+    <div class="tabela">
+      <table>
+        <p class="title">Cadastro de Personagem</p>
+        <br />
+        <tr>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Fantasia</th>
+          <th>Local</th>
+          <th>Editar</th>
+          <th>Limpar</th>
+        </tr>
 
-
-
-
-
-    </table>
-  </div>
+        <tr>
+          <td>Peterxxxxxx</td>
+          <td>Parkerxxxxxx</td>
+          <td>Homem-Aranhaxxxxxx</td>
+          <td>NY Cityxxxxxx</td>
+          <td><img src="Img/editar.png" alt="Editar" class="Editar" /></td>
+          <td>
+            <img
+              src="Img/lixeira-de-reciclagem.png"
+              alt="Lixeira"
+              class="Lixeira"
+            />
+          </td>
+        </tr>
+      </table>
+    </div>
   </body>
 </html>
