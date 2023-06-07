@@ -146,6 +146,8 @@ body {
   width: auto;
   height: auto;
   text-align: center;
+  max-height: auto;
+  overflow: scroll;
 }
 .tittable {
   color: royalblue;
@@ -167,4 +169,19 @@ img {
   width: 15px;
   height: auto;
   padding: 5px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #e7e7e7;
+  border: 1px solid #cacaca
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: royalblue
 }

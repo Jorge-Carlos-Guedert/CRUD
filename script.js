@@ -9,34 +9,39 @@ let urlPadrao = "http://localhost:5202/api/Personagens";
 
 function addNome() {
   nameHero = inputNome.value;
-  alert("NOME INSERIDO!");
+  nameHero = nameHero[0].toUpperCase() + nameHero.substring(1).toLowerCase();
+  console.log(nameHero);
 }
 
 function addSobrenome() {
   surnameHero = inputSobrenome.value;
-  alert("SOBRENOME INSERIDO!");
+  surnameHero =
+    surnameHero[0].toUpperCase() + surnameHero.substring(1).toLowerCase();
+  console.log(surnameHero);
 }
 
 function addFantasia() {
   fantasy = inputFantasia.value;
-  alert("FANTASIA INSERIDO!");
+  fantasy = fantasy[0].toUpperCase() + fantasy.substring(1).toLowerCase();
+  console.log(fantasy);
 }
 
 function addLocal() {
   locale = inputLocal.value;
-  alert("LOCAL INSERIDO!");
+  locale = locale[0].toUpperCase() + locale.substring(1).toLowerCase();
+  console.log(locale);
 }
 
 formulario.addEventListener("submit", (evento) => {
-
   evento.preventDefault();
-  alert("ENVIADO FORMULARIO!");
+  registrar();
 });
 const fetchRPG = async (id) => {
   const url = !id ? urlPadrao : `${urlPadrao}/${id}`;
   const APIresponse = await fetch(url);
   if (APIresponse.status === 200) {
     const dados = await APIresponse.json();
+    console.log(dados);
     return dados;
   }
 };
@@ -62,22 +67,45 @@ const registrar = async () => {
     },
     body: JSON.stringify(dadosFinais),
   };
+
   await fetch(urlPadrao, options)
     .then((resp) => {
-      resp.json();
+      return resp.json();
     })
     .then((dados) => {
       reendeniza(dados);
     })
     .catch((error) => {
       alert(error.toString());
+    })
+    .finally(() => {
+      formulario.reset();
+    });
+};
+
+const exclusao = async (id) => {
+  let options = {
+    method: "DELETE",
+  };
+  await fetch(urlPadrao + "/" + id, options)
+    .then((resp) => {
+      return resp.json();
+    })
+    .then((dados) => {
+      reendeniza(dados);
+    })
+    .catch(() => {
+      alert("Não foi possível excluir");
     });
 };
 
 const reendeniza = (dados) => {
+  console.log(dados);
   if (!dados) {
     const div = document.getElementById("tabela");
-    div.style.display = "none";
+    if (div) {
+      div.style.display = "none";
+    }
   } else {
     let table = document.getElementById("tabelaHerois");
 
@@ -98,10 +126,18 @@ const reendeniza = (dados) => {
     let titulo4 = document.createElement("th");
     titulo4.textContent = "Local";
 
+    let titulo5 = document.createElement("th");
+    titulo5.textContent = "Editar";
+
+    let titulo6 = document.createElement("th");
+    titulo6.textContent = "Excluir";
+
     tituloLinha.appendChild(titulo1);
     tituloLinha.appendChild(titulo2);
     tituloLinha.appendChild(titulo3);
     tituloLinha.appendChild(titulo4);
+    tituloLinha.appendChild(titulo5);
+    tituloLinha.appendChild(titulo6);
 
     table.appendChild(tituloLinha);
 
@@ -110,6 +146,7 @@ const reendeniza = (dados) => {
 
       let dados1 = document.createElement("td");
       dados1.textContent = heroi.nome;
+      console.log(dados1);
 
       let dados2 = document.createElement("td");
       dados2.textContent = heroi.sobrenome;
@@ -129,7 +166,8 @@ const reendeniza = (dados) => {
       let excluir = document.createElement("img");
 
       excluir.onclick = function () {
-        alert("Excluindo o herói de id " + heroi.id);
+        // alert("Excluindo o herói de id " + heroi.id);
+        exclusao(heroi.id);
       };
 
       editar.src = "Img/editar.png";
